@@ -65,7 +65,6 @@ const SavedVideos = () => {
     <ReactContext.Consumer>
       {value => {
         const {isDarkMode} = value
-        console.log(savedVideosList)
         return (
           <NavMainContainer applyColor={isDarkMode}>
             {renderSavedLogoContainer()}

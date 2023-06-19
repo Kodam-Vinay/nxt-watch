@@ -37,6 +37,7 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
+
 class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
@@ -51,6 +52,12 @@ class Home extends Component {
 
   onChangeSearchInput = event => {
     this.setState({searchInput: event.target.value})
+  }
+
+  onPressEnter = event => {
+    if (event.key === 'Enter') {
+      this.getVideosData()
+    }
   }
 
   getVideosData = async () => {
@@ -208,16 +215,17 @@ class Home extends Component {
                 placeholder="search"
                 applyColor={isDarkMode}
                 onChange={this.onChangeSearchInput}
+                onKeyDown={this.onPressEnter}
                 value={searchInput}
               />
               <SearchButton
+                data-testid="searchButton"
                 applyColor={isDarkMode}
                 onClick={this.getVideosData}
               >
                 <BsSearch
                   size={18}
                   color={isDarkMode ? '#f9f9f9' : '#181818'}
-                  data-testid="searchButton"
                 />
               </SearchButton>
             </SearchContainer>

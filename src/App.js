@@ -64,14 +64,14 @@ class App extends Component {
 
   updateSave = videoDetails => {
     this.setState(
-      prev => ({save: !prev.save}),
+      prevState => ({save: !prevState.save}),
       this.updateSaveVideosList(videoDetails),
     )
   }
 
   render() {
     const {isDarkMode, activeNavItem, save, savedVideosList} = this.state
-    console.log(savedVideosList)
+
     return (
       <ReactContext.Provider
         value={{

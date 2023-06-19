@@ -53,10 +53,10 @@ export const NoVideosContainer = styled.div`
 
 export const NoVideosImg = styled.img`
   height: 180px;
-  width: 200px;
+  width: 250px;
   @media screen and (min-width: 768px) {
     height: 250px;
-    width: 280px;
+    width: 350px;
   }
 `
 
