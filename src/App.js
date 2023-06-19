@@ -23,11 +23,20 @@ const constActiveNavItems = {
   savedVideos: 'SAVED_VIDEOS',
 }
 
+const getSavedVideosList = () => {
+  const stringifiedList = localStorage.getItem('savedVideos')
+  const parsedList = JSON.parse(stringifiedList)
+  if (parsedList === null) {
+    return []
+  }
+  return parsedList
+}
+
 class App extends Component {
   state = {
     isDarkMode: false,
     activeNavItem: constActiveNavItems.home,
-    savedVideosList: [],
+    savedVideosList: getSavedVideosList(),
     save: false,
   }
 
@@ -39,10 +48,25 @@ class App extends Component {
     this.setState({activeNavItem: value})
   }
 
+  addToLocalStorage = () => {
+    const {savedVideosList} = this.state
+    const stringifiedList = JSON.stringify(savedVideosList)
+    localStorage.setItem('savedVideos', stringifiedList)
+  }
+
   addVideosToSavedVideos = videoDetails => {
-    this.setState(prevState => ({
-      savedVideosList: [...prevState.savedVideosList, videoDetails],
-    }))
+    const {savedVideosList} = this.state
+    const findVideo = savedVideosList.find(
+      eachItem => eachItem.id === videoDetails.id,
+    )
+    if (findVideo === undefined) {
+      this.setState(
+        prevState => ({
+          savedVideosList: [...prevState.savedVideosList, videoDetails],
+        }),
+        this.addToLocalStorage,
+      )
+    }
   }
 
   deleteVideosFromSavedVideos = videoDetails => {
@@ -50,7 +74,7 @@ class App extends Component {
     const filterData = savedVideosList.filter(
       each => each.id !== videoDetails.id,
     )
-    this.setState({savedVideosList: filterData})
+    this.setState({savedVideosList: filterData}, this.addToLocalStorage)
   }
 
   updateSaveVideosList = videoDetails => {
