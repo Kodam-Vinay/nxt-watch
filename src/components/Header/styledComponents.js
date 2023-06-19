@@ -101,6 +101,8 @@ export const Button = styled.button`
   border-radius: 5px;
   outline: none;
   border: 1px solid #3b82f6;
+  cursor: pointer;
+  outline: none;
 `
 
 export const CloseButton = styled.button`

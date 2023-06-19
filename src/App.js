@@ -13,6 +13,7 @@ import VideoItemDetails from './components/VideoItemDetails'
 import SavedVideosContext from './context/SavedVideosContext'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
+import SavedVideos from './components/SavedVideos'
 
 const constActiveNavItems = {
   initial: 'INITIAL',
@@ -70,6 +71,7 @@ class App extends Component {
 
   render() {
     const {isDarkMode, activeNavItem, save, savedVideosList} = this.state
+    console.log(savedVideosList)
     return (
       <ReactContext.Provider
         value={{
@@ -97,6 +99,11 @@ class App extends Component {
               <ProtectedRoute exact path="/" component={Home} />
               <ProtectedRoute exact path="/trending" component={Trending} />
               <ProtectedRoute exact path="/gaming" component={Gaming} />
+              <ProtectedRoute
+                exact
+                path="/saved-videos"
+                component={SavedVideos}
+              />
               <ProtectedRoute
                 exact
                 path="/videos/:id"

@@ -18,15 +18,8 @@ import ReactContext from '../../context/ReactContext'
 
 const TrendingItem = props => {
   const {videosList} = props
-  const {
-    id,
-    channelName,
-    channelLogo,
-    publishedAt,
-    title,
-    viewCount,
-    thumbnailUrl,
-  } = videosList
+  const {id, publishedAt, title, viewCount, thumbnailUrl, channel} = videosList
+  const {name, profileImageUrl} = channel
   let publishedDate = formatDistanceToNow(new Date(publishedAt)).split(' ')
   if (publishedDate.length === 3) {
     publishedDate.shift()
@@ -49,12 +42,12 @@ const TrendingItem = props => {
                 <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
                 <TextContainer>
                   <div>
-                    <ChannelLogo src={channelLogo} alt="channel logo" />
+                    <ChannelLogo src={profileImageUrl} alt="channel logo" />
                   </div>
                   <VideoTextContainer>
                     <VideoTitle applyColor={isDarkMode}>{title}</VideoTitle>
                     <VideoDetailsContainer>
-                      <VideoText>{channelName}</VideoText>
+                      <VideoText>{name}</VideoText>
                       <VideoDetailsContainer2>
                         <VideoText>{viewCount} views</VideoText>
                         <VideoText>{publishedDate} ago</VideoText>

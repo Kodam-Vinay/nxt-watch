@@ -55,8 +55,10 @@ class Trending extends Component {
       const data = await response.json()
       const parsedData = data.videos.map(eachItem => ({
         id: eachItem.id,
-        channelName: eachItem.channel.name,
-        channelLogo: eachItem.channel.profile_image_url,
+        channel: {
+          name: eachItem.channel.name,
+          profileImageUrl: eachItem.channel.profile_image_url,
+        },
         publishedAt: eachItem.published_at,
         thumbnailUrl: eachItem.thumbnail_url,
         title: eachItem.title,

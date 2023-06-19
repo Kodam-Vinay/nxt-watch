@@ -58,7 +58,6 @@ class Gaming extends Component {
         title: eachItem.title,
         viewCount: eachItem.view_count,
       }))
-      console.log(parsedData)
       this.setState({
         videosList: parsedData,
         apiStatus: apiStatusConstants.success,
